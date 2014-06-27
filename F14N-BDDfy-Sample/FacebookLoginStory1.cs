@@ -22,34 +22,34 @@ namespace F14N_BDDfy_Sample
         public void CannotLoginToFacebookWithInvalidCrdentials()
          {
              new FacebookLoginStory()
-                 .Given(s => s.IAmOnFacebookLoginPage())
-                 .And(s => s.ILoginUsingEmailAndPassword("a@b.com", "password"), "I login using email '{0}' and password '{1}'")
-                 .Then(s => s.ShowsMessage("Incorrect email address"))
+                 .Given(s => s.GivenIAmOnFacebookLoginPage())
+                 .And(s => s.AndILoginUsingEmailAndPassword("a@b.com", "password"), "And I login using email '{0}' and password '{1}'")
+                 .Then(s => s.ThenShowsMessage("Incorrect email address"), "Then error message '{0}' is displayed")
                  .BDDfy();
          }
         [Test]
         public void PasswordIsMandatory()
         {
             new FacebookLoginStory()
-                .Given(s => s.IAmOnFacebookLoginPage())
-                .And(s => s.ILoginUsingEmailAndPassword("a@b.com", ""), "I login using email '{0}' and password '{1}'")
-                .Then(s => s.ShowsMessage("Please re-enter your password"), "Error message '{0}' is displayed")
+                .Given(s => s.GivenIAmOnFacebookLoginPage())
+                .And(s => s.AndILoginUsingEmailAndPassword("a@b.com", ""), "I login using email '{0}' and password '{1}'")
+                .Then(s => s.ThenShowsMessage("Please re-enter your password"), "Then error message '{0}' is displayed")
                 .BDDfy();
         }
 
-        private void ShowsMessage(string message)
+        private void ThenShowsMessage(string message)
         {
             I.Assert.Text(message);
         }
 
-        private void ILoginUsingEmailAndPassword(string email, string password)
+        private void AndILoginUsingEmailAndPassword(string email, string password)
         {
             I.Enter(email).In(EmailInput);
             I.Enter(password).In(PasswordInput);
             I.Click(LoginButton);
         }
 
-        private void IAmOnFacebookLoginPage()
+        private void GivenIAmOnFacebookLoginPage()
         {
             I.Open("http://www.facebook.com");
         }
