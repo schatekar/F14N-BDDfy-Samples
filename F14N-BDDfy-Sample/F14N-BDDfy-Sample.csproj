@@ -64,8 +64,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FacebookHomePage.cs" />
+    <Compile Include="FacebookLoginStory1.cs" />
     <Compile Include="FacebookLoginPage.cs" />
-    <Compile Include="FacebookLoginStory.cs" />
+    <Compile Include="FacebookLoginStory2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

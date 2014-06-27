@@ -8,8 +8,9 @@ namespace F14N_BDDfy_Sample
     [TestFixture]
     public class FacebookLoginStory : FluentTest
     {
-        private FacebookLoginPage facebookLoginPage;
-        private FacebookHomePage facebookHomePage;
+        private const string EmailInput = "input[id='email']";
+        private const string PasswordInput = "input[id='pass']";
+        private const string LoginButton = "input[value='Log in']";
 
         public FacebookLoginStory()
         {
@@ -43,17 +44,14 @@ namespace F14N_BDDfy_Sample
 
         private void ILoginUsingEmailAndPassword(string email, string password)
         {
-            facebookHomePage = facebookLoginPage.Login(email, password);
+            I.Enter(email).In(EmailInput);
+            I.Enter(password).In(PasswordInput);
+            I.Click(LoginButton);
         }
 
         private void IAmOnFacebookLoginPage()
         {
-            facebookLoginPage = new FacebookLoginPage(this).Go();
-        }
-
-        public void TearDown()
-        {
-            I.Dispose();
+            I.Open("http://www.facebook.com");
         }
     }
 }

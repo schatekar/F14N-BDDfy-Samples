@@ -25,8 +25,4 @@ namespace F14N_BDDfy_Sample
             return Switch<FacebookHomePage>();
         }
     }
-
-    public class FacebookHomePage : PageObject<FacebookLoginPage> {
-        public FacebookHomePage(FluentTest test) : base(test) {}
-    }
 }
